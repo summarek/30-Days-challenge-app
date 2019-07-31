@@ -13,7 +13,6 @@
         <router-link to="/Stats">Stats</router-link>
       </div>
     </nav>
-
     <main>
       <router-view />
     </main>
@@ -21,27 +20,9 @@
 </template>
 
 <style lang="scss">
-@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
 body {
-  font-family: "Roboto", sans-serif;
-  padding: 2em;
+  padding: 1em;
 }
-a {
-  text-decoration: none;
-  color: black;
-}
-.padding {
-  padding: 1rem;
-}
-.margin {
-  margin: 1rem;
-}
-
 .header {
   display: flex;
   justify-content: center;
@@ -49,21 +30,27 @@ a {
 
   &-main_title {
     font-size: 2rem;
-    font-weight: normal;
+    font-weight: lighter;
     text-align: center;
+    margin-bottom: 0;
+    line-height: 30px;
   }
   &-under_title {
     text-align: center;
     font-size: 1.4rem;
+    margin: 0.5rem;
+    color: rgba(0, 0, 0, 0.5);
   }
 }
 .navigation {
   position: absolute;
   top: 0rem;
+  padding: 0.5rem;
   right: 0;
+  margin-right: 2rem;
 
-  @media (min-width: 870px) {
-    top: 2rem;
+  @media (min-width: 970px) {
+    top: 2.1rem;
   }
 }
 </style>
