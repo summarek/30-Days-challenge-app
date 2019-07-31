@@ -1,22 +1,20 @@
 <template>
   <div id="app">
     <header class="header">
-      <div class="header-title margin">
+      <div class="header-title">
         <p class="header-main_title">SUMMAREK 30 DAYS CODING CHALLENGE</p>
         <p class="header-under_title">it’s my holidays learning progress</p>
       </div>
-      <div class="navigation-nav margin">
-        <router-link to="/">Home</router-link>|
-        <router-link to="/Stats">Stats</router-link>
-      </div>
     </header>
-    <!-- <nav class="navigation">
-      <div class="navigation-nav margin">
+
+    <nav class="navigation">
+      <div class="navigation-nav">
         <router-link to="/">Home</router-link>|
         <router-link to="/Stats">Stats</router-link>
       </div>
-    </nav>-->
-    <main class="padding">
+    </nav>
+
+    <main>
       <router-view />
     </main>
   </div>
@@ -48,7 +46,6 @@ a {
   display: flex;
   justify-content: center;
   align-content: center;
-  // position: relative;
 
   &-main_title {
     font-size: 2rem;
@@ -59,7 +56,14 @@ a {
     text-align: center;
     font-size: 1.4rem;
   }
-  &-nav {
+}
+.navigation {
+  position: absolute;
+  top: 0rem;
+  right: 0;
+
+  @media (min-width: 870px) {
+    top: 2rem;
   }
 }
 </style>
