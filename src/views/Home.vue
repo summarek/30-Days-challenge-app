@@ -9,7 +9,14 @@
         <div class="card-body">
           <img width="60px" src="../assets/Ellipse.png" alt="some nice graphic" />
           <img class="card-middleimg" width="100px" src="../assets/okMark.svg" alt="ok mark" />
-          <img width="70px" src="../assets/xMark.svg" alt="x mark" />
+          <img
+            class="card-middleimg card-hidden"
+            width="100px"
+            src="../assets/okHoverMark.svg"
+            alt="ok mark"
+          />
+          <img class="card-xMark" width="70px" src="../assets/xMark.svg" alt="x mark" />
+          <img class="card-xHidden" width="70px" src="../assets/xHoverMark.svg" alt="x mark" />
         </div>
       </div>
     </div>
@@ -87,21 +94,21 @@ export default {
   &-header {
     display: flex;
     justify-content: space-between;
+    &_title {
+      font-weight: normal;
+      font-size: 1rem;
+      color: #fff;
+      line-height: 16px;
+      margin: 0;
+      max-width: 150px;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
+    }
   }
   &-number {
     color: #fff;
     margin: 0;
     font-family: "Open Sans", sans-serif;
     font-size: 1.5rem;
-  }
-  &-header_title {
-    font-weight: normal;
-    font-size: 1rem;
-    color: #fff;
-    line-height: 16px;
-    margin: 0;
-    max-width: 150px;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
   }
   &-body {
     display: flex;
@@ -111,6 +118,33 @@ export default {
   }
   &-middleimg {
     align-self: center;
+    // background-color: red;
+    border-radius: 50px;
+  }
+  &-hidden {
+    opacity: 0;
+    z-index: 10;
+    position: absolute;
+    transform: translateX(86px);
+    transition: opacity 0.2s ease;
+    &:hover {
+      cursor: pointer;
+      opacity: 1;
+    }
+  }
+  &-xMark {
+    border-radius: 50px;
+  }
+  &-xHidden {
+    opacity: 0;
+    z-index: 10;
+    position: absolute;
+    transform: translateX(210px);
+    transition: opacity 0.2s ease;
+    &:hover {
+      cursor: pointer;
+      opacity: 1;
+    }
   }
 }
 </style>
