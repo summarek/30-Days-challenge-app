@@ -53,4 +53,7 @@ body {
     top: 2.1rem;
   }
 }
+.md-checkbox.md-theme-default .md-checkbox-container {
+  border-color: #fff;
+}
 </style>

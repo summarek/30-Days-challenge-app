@@ -1,150 +1,142 @@
 <template>
   <div class="home">
-    <div class="cards">
-      <div class="card" v-for="(greenCard, index) in greenCards" :key="index">
-        <div class="card-header">
-          <h2 class="card-header_title">Click if You have done this task today.</h2>
-          <h3 class="card-number">{{index+1}}</h3>
-        </div>
-        <div class="card-body">
-          <img width="60px" src="../assets/Ellipse.png" alt="some nice graphic" />
-          <img class="card-middleimg" width="100px" src="../assets/okMark.svg" alt="ok mark" />
-          <img
-            class="card-middleimg card-hidden"
-            width="100px"
-            src="../assets/okHoverMark.svg"
-            alt="ok mark"
-          />
-          <img class="card-xMark" width="70px" src="../assets/xMark.svg" alt="x mark" />
-          <img class="card-xHidden" width="70px" src="../assets/xHoverMark.svg" alt="x mark" />
-        </div>
+    <md-button class="md-raised md-primary" @click="resetEverything">RESET CARE!!!</md-button>
+    <div class="grid-home">
+      <div v-for="(Card, index) in Cards" :key="index" class="cards">
+        <GreenCard
+          :saveCards="saveCards"
+          v-if="Card.cardColor == `green`"
+          :Cards="Cards"
+          :counter="index+1"
+        ></GreenCard>
+        <YellowCard
+          :method="saveCards"
+          v-else-if="Card.cardColor == `yellow`"
+          :learnedThings="learnedThings"
+          :counter="index+1"
+          :hoursOfLearning="hoursOfLearning"
+        ></YellowCard>
+        <RedCard
+          :method="saveCards"
+          v-else-if="Card.cardColor == `red`"
+          :counter="index+1"
+          :hoursOfLearning="hoursOfLearning"
+        ></RedCard>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import GreenCard from '@/components/GreenCard.vue';
+import YellowCard from '@/components/YellowCard.vue';
+import RedCard from '@/components/RedCard.vue';
+
 export default {
   name: 'home',
+  components: {
+    GreenCard,
+    YellowCard,
+    RedCard,
+  },
   data() {
     return {
-      greenCards: [
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
+      Cards: [
+        { cardColor: 'green', index: 0 },
+        { cardColor: 'green', index: 1 },
+        { cardColor: 'green', index: 2 },
+        { cardColor: 'green', index: 3 },
+        { cardColor: 'green', index: 4 },
+        { cardColor: 'green', index: 5 },
+        { cardColor: 'green', index: 6 },
+        { cardColor: 'green', index: 7 },
+        { cardColor: 'green', index: 8 },
+        { cardColor: 'green', index: 9 },
+        { cardColor: 'green', index: 10 },
+        { cardColor: 'green', index: 11 },
+        { cardColor: 'green', index: 12 },
+        { cardColor: 'green', index: 13 },
+        { cardColor: 'green', index: 14 },
+        { cardColor: 'green', index: 15 },
+        { cardColor: 'green', index: 16 },
+        { cardColor: 'green', index: 17 },
+        { cardColor: 'green', index: 18 },
+        { cardColor: 'green', index: 19 },
+        { cardColor: 'green', index: 20 },
+        { cardColor: 'green', index: 21 },
+        { cardColor: 'green', index: 22 },
+        { cardColor: 'green', index: 23 },
+        { cardColor: 'green', index: 24 },
+        { cardColor: 'green', index: 25 },
+        { cardColor: 'green', index: 26 },
+        { cardColor: 'green', index: 27 },
+        { cardColor: 'green', index: 28 },
+        { cardColor: 'green', index: 29 },
       ],
-      yellowCards: [],
-      redCards: [],
+      hoursOfLearning: [],
+      learnedThings: [],
     };
   },
   mounted() {
-    // creating card objects
+    if (localStorage.Cards) {
+      this.Cards = JSON.parse(localStorage.getItem('Cards') || '[]');
+      console.log(`# of Cards: ${this.Cards.length}`);
+      this.Cards.forEach((Card, index) => {
+        console.log(`[${index}]: ${Card.cardColor}`);
+      });
+    }
+  },
+  methods: {
+    saveCards() {
+      localStorage.setItem('Cards', JSON.stringify(this.Cards));
+    },
+    resetEverything() {
+      console.log('RESETUJE');
+      this.Cards = [
+        { cardColor: 'green', index: 1 },
+        { cardColor: 'green', index: 0 },
+        { cardColor: 'green', index: 2 },
+        { cardColor: 'green', index: 3 },
+        { cardColor: 'green', index: 4 },
+        { cardColor: 'green', index: 5 },
+        { cardColor: 'green', index: 6 },
+        { cardColor: 'green', index: 7 },
+        { cardColor: 'green', index: 8 },
+        { cardColor: 'green', index: 9 },
+        { cardColor: 'green', index: 10 },
+        { cardColor: 'green', index: 11 },
+        { cardColor: 'green', index: 12 },
+        { cardColor: 'green', index: 13 },
+        { cardColor: 'green', index: 14 },
+        { cardColor: 'green', index: 15 },
+        { cardColor: 'green', index: 16 },
+        { cardColor: 'green', index: 17 },
+        { cardColor: 'green', index: 18 },
+        { cardColor: 'green', index: 19 },
+        { cardColor: 'green', index: 20 },
+        { cardColor: 'green', index: 21 },
+        { cardColor: 'green', index: 22 },
+        { cardColor: 'green', index: 23 },
+        { cardColor: 'green', index: 24 },
+        { cardColor: 'green', index: 25 },
+        { cardColor: 'green', index: 26 },
+        { cardColor: 'green', index: 27 },
+        { cardColor: 'green', index: 28 },
+        { cardColor: 'green', index: 29 },
+      ];
+      this.hoursOfLearning = [];
+      this.learnedThings = [];
+      this.saveCards();
+    },
   },
 };
 </script>
 <style lang="scss" scoped>
-@import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
-.cards {
+.grid-home {
   display: grid;
   grid-template-columns: repeat(auto-fill, 300px);
   grid-gap: 1rem;
   justify-content: center;
   margin-top: 2rem;
-}
-.card {
-  background: linear-gradient(
-    124.97deg,
-    #328873 1.1%,
-    rgba(16, 151, 118, 0.93) 98.95%
-  );
-
-  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
-  border-radius: 3px;
-  width: 300px;
-  height: 200px;
-  padding: 10px;
-
-  &-header {
-    display: flex;
-    justify-content: space-between;
-    &_title {
-      font-weight: normal;
-      font-size: 1rem;
-      color: #fff;
-      line-height: 16px;
-      margin: 0;
-      max-width: 150px;
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
-    }
-  }
-  &-number {
-    color: #fff;
-    margin: 0;
-    font-family: "Open Sans", sans-serif;
-    font-size: 1.5rem;
-  }
-  &-body {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    height: 80%;
-  }
-  &-middleimg {
-    align-self: center;
-    // background-color: red;
-    border-radius: 50px;
-  }
-  &-hidden {
-    opacity: 0;
-    z-index: 10;
-    position: absolute;
-    transform: translateX(86px);
-    transition: opacity 0.2s ease;
-    &:hover {
-      cursor: pointer;
-      opacity: 1;
-    }
-  }
-  &-xMark {
-    border-radius: 50px;
-  }
-  &-xHidden {
-    opacity: 0;
-    z-index: 10;
-    position: absolute;
-    transform: translateX(210px);
-    transition: opacity 0.2s ease;
-    &:hover {
-      cursor: pointer;
-      opacity: 1;
-    }
-  }
 }
 </style>
