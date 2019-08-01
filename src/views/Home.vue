@@ -24,6 +24,7 @@
         ></RedCard>
       </div>
     </div>
+    <Stats1 :hoursOfLearning="hoursOfLearning"></Stats1>
   </div>
 </template>
 
@@ -31,6 +32,7 @@
 import GreenCard from '@/components/GreenCard.vue';
 import YellowCard from '@/components/YellowCard.vue';
 import RedCard from '@/components/RedCard.vue';
+import Stats1 from '@/components/Stats1.vue';
 
 export default {
   name: 'home',
@@ -38,6 +40,7 @@ export default {
     GreenCard,
     YellowCard,
     RedCard,
+    Stats1,
   },
   data() {
     return {
@@ -80,10 +83,6 @@ export default {
   mounted() {
     if (localStorage.Cards) {
       this.Cards = JSON.parse(localStorage.getItem('Cards') || '[]');
-      console.log(`# of Cards: ${this.Cards.length}`);
-      this.Cards.forEach((Card, index) => {
-        console.log(`[${index}]: ${Card.cardColor}`);
-      });
     }
   },
   methods: {
@@ -124,6 +123,7 @@ export default {
         { cardColor: 'green', index: 28 },
         { cardColor: 'green', index: 29 },
       ];
+      console.log(this.hoursOfLearning);
       this.hoursOfLearning = [];
       this.learnedThings = [];
       this.saveCards();

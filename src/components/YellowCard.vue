@@ -11,7 +11,7 @@
       <div class="card-body">
         <md-field>
           <label>enter your anwser...</label>
-          <md-textarea v-model.trim="learnedThing" @keyup="greet"></md-textarea>
+          <md-textarea v-model.trim="learnedThing" @keyup="writingTask"></md-textarea>
         </md-field>
         <div class="card-checkboxes">
           <md-checkbox class="md-primary" v-model="hoursOfLearning" :value="random1"></md-checkbox>
@@ -42,7 +42,7 @@ export default {
     };
   },
   methods: {
-    greet() {
+    writingTask() {
       this.learnedThings[this.counter - 1] = this.learnedThing;
       console.log(this.learnedThings);
       console.log(this.learnedThing);
