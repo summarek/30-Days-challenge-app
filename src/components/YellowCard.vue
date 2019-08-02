@@ -13,14 +13,6 @@
           <label>enter your anwser...</label>
           <md-textarea v-model.trim="learnedThing" @keyup="writingTask"></md-textarea>
         </md-field>
-        <div class="card-checkboxes">
-          <md-checkbox class="md-primary" v-model="hoursOfLearning" :value="random1"></md-checkbox>
-          <md-checkbox class="md-primary" v-model="hoursOfLearning" :value="random2"></md-checkbox>
-          <md-checkbox class="md-primary" v-model="hoursOfLearning" :value="random3"></md-checkbox>
-          <md-checkbox class="md-primary" v-model="hoursOfLearning" :value="random4"></md-checkbox>
-          <md-checkbox class="md-primary" v-model="hoursOfLearning" :value="random5"></md-checkbox>
-          <md-tooltip md-delay="200" md-direction="right">1 checkbox = 1 hour learning</md-tooltip>
-        </div>
       </div>
     </div>
   </div>
@@ -29,27 +21,39 @@
 <script>
 export default {
   name: 'GreenCard',
-  props: ['counter', 'hoursOfLearning', 'value', 'learnedThings', 'saveCards'],
+  props: {
+    saveCheckedBoxed: { type: Function },
+    counter: { type: Number },
+    hoursOfLearning: { type: Array },
+    value: { type: Number },
+    learnedThings: { type: Array },
+  },
 
   data() {
     return {
       learnedThing: null,
-      random1: Math.random() * 10,
-      random2: Math.random() * 10,
-      random3: Math.random() * 10,
-      random4: Math.random() * 10,
-      random5: Math.random() * 10,
+      random1: Math.floor(Math.random() * 10),
+      random2: Math.floor(Math.random() * 10),
+      random3: Math.floor(Math.random() * 10),
+      random4: Math.floor(Math.random() * 10),
+      random5: Math.floor(Math.random() * 10),
     };
   },
   methods: {
     writingTask() {
       this.learnedThings[this.counter - 1] = this.learnedThing;
+      localStorage.setItem('learnedThing', JSON.stringify(this.learnedThing));
+
       console.log(this.learnedThings);
       console.log(this.learnedThing);
     },
   },
   mounted() {
-    // let learnedThing = this.learnedThing;
+    if (localStorage.hoursOfLearning) {
+      this.learnedThing = JSON.parse(
+        localStorage.getItem('learnedThing') || '[]',
+      );
+    }
   },
 };
 </script>

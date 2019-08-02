@@ -10,14 +10,13 @@
           :counter="index+1"
         ></GreenCard>
         <YellowCard
-          :method="saveCards"
+          :saveCheckedBoxed="saveCheckedBoxed"
           v-else-if="Card.cardColor == `yellow`"
           :learnedThings="learnedThings"
           :counter="index+1"
           :hoursOfLearning="hoursOfLearning"
         ></YellowCard>
         <RedCard
-          :method="saveCards"
           v-else-if="Card.cardColor == `red`"
           :counter="index+1"
           :hoursOfLearning="hoursOfLearning"
@@ -84,11 +83,24 @@ export default {
     if (localStorage.Cards) {
       this.Cards = JSON.parse(localStorage.getItem('Cards') || '[]');
     }
+    if (localStorage.hoursOfLearning) {
+      this.hoursOfLearning = JSON.parse(
+        localStorage.getItem('hoursOfLearning') || '[]',
+      );
+    }
   },
   methods: {
     saveCards() {
       localStorage.setItem('Cards', JSON.stringify(this.Cards));
     },
+    saveCheckedBoxed() {
+      localStorage.setItem(
+        'hoursOfLearning',
+        JSON.stringify(this.hoursOfLearning),
+      );
+      console.log(this.hoursOfLearning);
+    },
+
     resetEverything() {
       console.log('RESETUJE');
       this.Cards = [
@@ -127,6 +139,7 @@ export default {
       this.hoursOfLearning = [];
       this.learnedThings = [];
       this.saveCards();
+      this.saveCheckedBoxed();
     },
   },
 };
