@@ -5,6 +5,9 @@ import 'vue-material/dist/theme/default.css';
 import App from './App.vue';
 import router from './router';
 
+// eslint-disable-next-line import/prefer-default-export
+export const bus = new Vue();
+
 Vue.use(VueMaterial);
 Vue.config.productionTip = false;
 

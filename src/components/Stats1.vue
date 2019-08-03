@@ -1,18 +1,30 @@
 <template>
   <div class="root">
-    <div>{{hoursOfLearning.length || '0'}} sdsd</div>
+    <div>
+      <h1>twoje statystyki:</h1>
+      <ul></ul>
+    </div>
   </div>
 </template>
 
 <script>
+import { bus } from '../main';
+
 export default {
   name: 'Stats1',
   props: ['hoursOfLearning'],
   data() {
-    return {};
+    return {
+      learnedThingsTab: ['hm'],
+      currentThings: null,
+    };
   },
   mounted() {
-    // creating card objects
+    bus.$on('leci', (data) => {
+      this.currentThings = data;
+
+      console.log(`TO JEST Z STATSÓW ${data}`);
+    });
   },
 };
 </script>

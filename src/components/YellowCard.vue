@@ -11,7 +11,7 @@
       <div class="card-body">
         <md-field>
           <label>enter your anwser...</label>
-          <md-textarea v-model.trim="learnedThing" @keyup="writingTask"></md-textarea>
+          <md-textarea v-model.trim="learnedTasks[counter -1]" @keyup="writingTask"></md-textarea>
         </md-field>
       </div>
     </div>
@@ -19,6 +19,8 @@
 </template>
 
 <script>
+import { bus } from '../main';
+
 export default {
   name: 'GreenCard',
   props: {
@@ -31,28 +33,19 @@ export default {
 
   data() {
     return {
-      learnedThing: null,
-      random1: Math.floor(Math.random() * 10),
-      random2: Math.floor(Math.random() * 10),
-      random3: Math.floor(Math.random() * 10),
-      random4: Math.floor(Math.random() * 10),
-      random5: Math.floor(Math.random() * 10),
+      learnedTasks: this.learnedThings,
+      learnedTask: null,
     };
   },
   methods: {
     writingTask() {
-      this.learnedThings[this.counter - 1] = this.learnedThing;
-      localStorage.setItem('learnedThing', JSON.stringify(this.learnedThing));
-
-      console.log(this.learnedThings);
-      console.log(this.learnedThing);
+      localStorage.setItem('learnedTasks', JSON.stringify(this.learnedTasks));
+      bus.$emit('leci', this.learnedTasks);
     },
   },
   mounted() {
-    if (localStorage.hoursOfLearning) {
-      this.learnedThing = JSON.parse(
-        localStorage.getItem('learnedThing') || '[]',
-      );
+    if (localStorage.learnedTasks) {
+      this.learnedTasks = JSON.parse(localStorage.getItem('learnedTasks'));
     }
   },
 };
