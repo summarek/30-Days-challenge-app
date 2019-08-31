@@ -1,8 +1,13 @@
 <template>
   <div class="home">
-    <md-button class="md-raised md-primary" @click="resetEverything">RESET CARE!!!</md-button>
     <div class="grid-home">
       <div v-for="(Card, index) in Cards" :key="index" class="cards">
+           <transition
+      name="cart-anim"
+      mode="out-in"
+      enter-active-class="animated fadeInLeft"
+
+    >
         <GreenCard
           :saveCards="saveCards"
           v-if="Card.cardColor == `green`"
@@ -21,9 +26,9 @@
           :counter="index+1"
           :hoursOfLearning="hoursOfLearning"
         ></RedCard>
+           </transition>
       </div>
     </div>
-    <Stats1 :hoursOfLearning="hoursOfLearning"></Stats1>
   </div>
 </template>
 
@@ -31,7 +36,6 @@
 import GreenCard from '@/components/GreenCard.vue';
 import YellowCard from '@/components/YellowCard.vue';
 import RedCard from '@/components/RedCard.vue';
-import Stats1 from '@/components/Stats1.vue';
 
 export default {
   name: 'home',
@@ -39,7 +43,6 @@ export default {
     GreenCard,
     YellowCard,
     RedCard,
-    Stats1,
   },
   data() {
     return {

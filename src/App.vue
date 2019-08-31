@@ -2,24 +2,44 @@
   <div id="app">
     <header class="header">
       <div class="header-title">
-        <p class="header-main_title">SUMMAREK 30 DAYS CODING CHALLENGE</p>
-        <p class="header-under_title">it’s my holidays learning progress</p>
+        <p class="header-main_title">YOUR 30 DAYS CHALLENGE</p>
+        <p class="header-under_title">track your progress</p>
       </div>
     </header>
 
     <nav class="navigation">
       <div class="navigation-nav">
-        <router-link to="/">Home</router-link>|
+        <router-link to="/">Home</router-link> |
         <router-link to="/Stats">Stats</router-link>
       </div>
     </nav>
     <main>
+    <transition
+      name="router-anim"
+      mode="out-in"
+      enter-active-class="animated fadeInLeft"
+      leave-active-class="animated fadeOutRight"
+    >
       <router-view />
-    </main>
+    </transition>
+       </main>
   </div>
 </template>
-//hm
 <style lang="scss">
+
+@import "~vue-material/dist/theme/engine"; // Import the theme engine
+
+@include md-register-theme("default", (
+  primary: md-get-palette-color(blue, A200), // The primary color of your application
+  accent: md-get-palette-color(red, A200), // The accent or secondary color
+  theme: light // This can be dark or light
+));
+
+
+@import "~vue-material/dist/theme/all"; // Apply the theme
+@import url("https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css");
+
+
 body {
   padding: 1em;
 }

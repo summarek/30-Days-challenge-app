@@ -26,7 +26,8 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
 
 .card {
-  background-image: url("../assets/sadpepe.png");
+    background: linear-gradient(124.97deg, #000000 1.1%, #3a3a3a 98.95%);
+  color:white;
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
   border-radius: 3px;
@@ -40,7 +41,7 @@ export default {
     &_title {
       font-weight: normal;
       font-size: 1.5rem;
-      color: rgb(4, 0, 58);
+      color: rgb(255, 255, 255);
       font-weight: bold;
       line-height: 20px;
       margin: 0;

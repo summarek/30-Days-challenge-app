@@ -8,7 +8,7 @@
 import Stats1 from '@/components/Stats1.vue';
 
 export default {
-  name: 'home',
+  name: 'Stats',
   components: {
     Stats1,
   },
