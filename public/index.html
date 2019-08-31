@@ -5,6 +5,60 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <style>#cookieinfo * {
+      margin: 0px;
+      padding: 0px;
+  }
+  
+  #cookieinfo {
+      position: fixed;
+      font-size: 12px;
+      font-family: Arial, Verdana, sans-serif;
+      left: 0px;
+      bottom: 0px;
+      right: 0px;
+      background-color: #323334;
+      padding: 20px;
+      box-shadow: 0px -1px 3px rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+  }
+  
+  #cookieinfo h6 {
+      font-size: 16px;
+      font-weight: bold;
+      color: #cdd7da;
+      text-shadow: 0px 1px 1px rgba(0, 0, 0, 1);
+      margin-bottom: 7px;
+  }
+  
+  #cookieinfo p {
+      font-size: 12px;
+      color: #afb4bc;
+      line-height: 1.5em;
+      text-shadow: 0px 1px 1px rgba(0, 0, 0, 1);
+  }
+  
+  #cookieinfo a {
+      display: block;
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      width: 22px;
+      height: 22px;
+      border-radius: 11px;
+      line-height: 22px;
+      font-size: 12px;
+      color: #ffffff;
+      text-align: center;
+      text-decoration: none;
+      background-color: #ff6000;
+      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
+  }
+  
+  #cookieinfo:hover {
+      background-color: #3d3d3d;
+      cursor: pointer;
+  }</style>
     <title>30daysapp</title>
   </head>
   <body>
@@ -13,7 +67,21 @@
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
-    <script src="http://cookiealert.sruu.pl/CookieAlert-latest.min.js"></script>
-<script>CookieAlert.init();</script>
+   <script>(function() {
+    var container = document.createElement('div'),
+        link = document.createElement('a');
+
+    container.setAttribute('id', 'cookieinfo');
+    container.setAttribute('class', 'cookie-alert');
+    container.innerHTML = '<h6>Ta strona wykorzystuje pliki cookie</h6><p>Używamy informacji zapisanych za pomocą plików cookies w celu zapewnienia maksymalnej wygody w korzystaniu z naszego serwisu. Mogą też korzystać z nich współpracujące z nami firmy badawcze oraz reklamowe. Jeżeli wyrażasz zgodę na zapisywanie informacji zawartej w cookies kliknij na mnie! Jeśli nie wyrażasz zgody, ustawienia dotyczące plików cookies możesz zmienić w swojej przeglądarce.</p>';
+    document.body.appendChild(container);
+    document.querySelector('#cookieinfo').addEventListener('click', function () {
+      container.style.display = 'none';
+      document.querySelector('#cookieinfo').style.display = 'none';
+      
+    })
+
+    return true;
+})();</script>
   </body>
 </html>
