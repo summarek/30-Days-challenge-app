@@ -144,6 +144,7 @@ export default {
       this.saveCards();
       this.saveCheckedBoxed();
     },
+    
   },
 };
 </script>

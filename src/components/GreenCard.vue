@@ -29,6 +29,8 @@
 </template>
 
 <script>
+import { bus } from '../main';
+import { log } from 'util';
 export default {
   name: 'GreenCard',
   //  props: ["counter", "Cards", "saveCards"],
@@ -38,7 +40,9 @@ export default {
     Cards: { type: Array },
   },
   data() {
-    return {};
+    return {
+      tableRowsColors: []
+    };
   },
   mounted() {
     // this.saveCards();
@@ -46,16 +50,19 @@ export default {
 
   methods: {
     taskDone() {
-      console.log(this.Cards);
-      console.log(this);
+            console.log(this.Cards);
+
       this.Cards[this.counter - 1].cardColor = 'yellow';
       this.saveCards();
     },
     taskNotDone() {
-      console.log(this.Cards);
-      console.log(this);
+   
       this.Cards[this.counter - 1].cardColor = 'red';
       this.saveCards();
+      console.log(this.Cards);
+      
+
+
     },
   },
 };
