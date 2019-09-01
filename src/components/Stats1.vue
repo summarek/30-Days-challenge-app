@@ -7,12 +7,7 @@
         <md-table-head md-numeric>Day</md-table-head>
         <md-table-head>What did you learn?</md-table-head>
         </md-table-row>
-        <!-- <md-table-row v-for="(thing, index) in currentThings" :key="thing" :class="cardsColors[index]">
-        <md-table-cell  md-numeric>{{index + 1}}sdsdsdsd</md-table-cell>
-        <md-table-cell v-if="cardsColors[index]" md-numeric>{{index + 1}}</md-table-cell>
-        <md-table-cell v-if="cardsColors[index]">{{thing || ":(" }}</md-table-cell> -->
-
-      <md-table-row v-for="(card, index) in cardsColors" :key="index" v-if="card" :class="cardsColors[index]">
+        <md-table-row v-for="(card, index) in cardsColors" :key="index" v-if="card" :class="cardsColors[index]">
         <md-table-cell md-numeric>{{index + 1}}</md-table-cell>
         <md-table-cell>{{cardsColors[index] == 'yellow' ? currentThings[index] || "It's empty :c \n write something at home page" : ":(" }}</md-table-cell>
       </md-table-row>
@@ -32,12 +27,10 @@ export default {
   data() {
     return {
       currentThings: [],
-      cardsColors: []
+      cardsColors: [],
     };
   },
   created() {
-    
-    
     if (localStorage.learnedTasks) {
       this.currentThings = JSON.parse(localStorage.getItem('learnedTasks'));
     }
@@ -46,21 +39,19 @@ export default {
     }
 
     this.Cards.forEach((card, index) => {
-
-      if(card.cardColor != "green"){
+      if (card.cardColor != 'green') {
         this.cardsColors[index] = card.cardColor;
       }
-   
     });
 
     console.log(this.cardsColors);
-    
+
     bus.$on('leci', (data) => {
       this.currentThings = data;
       console.log(`TO JEST Z STATSÓW ${data}`);
     });
 
-      bus.$on('greenCardAction', (data) => {
+    bus.$on('greenCardAction', (data) => {
       console.log(`TO JEST Z STATSÓW ${data}`);
     });
   },
@@ -68,7 +59,7 @@ export default {
 </script>
 <style lang="scss">
   .red{
- background-image: linear-gradient(to right, #f43b47 0%, #453a94 100%); 
+ background-image: linear-gradient(to right, #f43b47 0%, #453a94 100%);
   font-weight: bold;
     color: rgb(43, 43, 43);
 

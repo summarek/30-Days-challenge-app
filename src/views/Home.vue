@@ -29,6 +29,7 @@
            </transition>
       </div>
     </div>
+      <md-button @click="resetEverything" class="md-raised md-primary">FLIP CARDS</md-button>
   </div>
 </template>
 
@@ -144,7 +145,7 @@ export default {
       this.saveCards();
       this.saveCheckedBoxed();
     },
-    
+
   },
 };
 </script>
